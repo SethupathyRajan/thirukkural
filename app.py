@@ -1,16 +1,15 @@
 from flask import Flask, render_template,redirect, session
 from functools import wraps
 import pymongo
+import os
+
 
 app = Flask(__name__)
 app.secret_key=b'\xf3\xc0\xcd\x1c\x147\x96C\xecf\xdf\x02H\x1c\xa6\xa6'
 
-#Database
-# CONNECTION_STRING = "mongodb+srv://vishnu_vardhan:vishnu_vardhan@cluster0.zozdv.mongodb.net/thirukkural_pazhagu?retryWrites=true&w=majority"
-#CONNECTION_STRING = "mongodb+srv://akashr:abcd1234@cluster0.m0kym.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
 
-CONNECTION_STRING = "mongodb+srv://rajansethupathyoffl:BngQC2mVAQXNvept@freelancecluster.k85ns.mongodb.net/?retryWrites=true&w=majority&appName=FreelanceCluster&tls=true&tlsAllowInvalidCertificates=true"
-# CONNECTION_STRING = "localhost:27017"
+
+CONNECTION_STRING = os.getenv("STRING")
 client = pymongo.MongoClient(CONNECTION_STRING)
 db = client.thirukkural_pazhagu
 
