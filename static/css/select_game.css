@@ -1,0 +1,50 @@
+.adigaram-row input {
+	visibility: hidden;
+}
+
+.game-label {
+	cursor: pointer;
+	height: 50px;
+	width: 170px;
+	padding: 25px 10px 25px 10px;
+	border-radius: 10px;
+	color: white;
+	font-size: 25px;
+	text-align: center;
+	margin: 10px 15px 10px 15px;
+	border: 2px solid black;
+	font-style: italic;
+	text-shadow: 0 0 5px #FF0000, 0 0 15px #0000FF;
+	text-decoration: none;
+	background-position: center;
+	background-size: cover;
+}
+
+.adigaram-row label:hover{
+	box-shadow: 0px 0px 10px 5px rgb(102, 101, 101);
+}
+
+
+.adigaram-row input:checked + label{
+	box-shadow: 0px 0px 10px 5px rgb(0, 119, 255)	;
+}
+
+#drag-drop-label {
+	background-image: url("../images/drag_drop_game.jpg");
+}
+
+#choose-label {
+	background-image: url("../images/choose_game.jpg");
+}
+
+.form-errors{
+	color: red;
+	height: 30px;
+	text-align: center;
+	/* padding: px 0px 0px 10px; */
+	font-weight: bold;
+}
+.select-game-btn {
+	text-align: right;
+	padding-right: 50px;
+}
