@@ -50,3 +50,8 @@ def select_adhigaram():
 @login_required
 def select_game():
     return render_template('select_game.html')
+
+
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 5000)) 
+    app.run(host="0.0.0.0", port=port)
