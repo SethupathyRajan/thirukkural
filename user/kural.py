@@ -34,6 +34,8 @@ class kural:
                 else:
                     error = '*அதிகாரம் தேர்வுசெய்க'
                 return jsonify({"error": error}), 401
+            
+            adhigaramNumber = 0
 
             if(select_adhigaram != ''):
                 adhigaram_data = db['adhigaram_data']
@@ -51,16 +53,21 @@ class kural:
             else:
                 adhigaramNumber = random.randint(0, 132)
 
-            kuralNumber = random.randint(0, 1)
-
             adhigaram_data = db['adhigaram_data']
             query = {"adhigaram": select_adhigaram}
             adhigaram = adhigaram_data.find(
                 query, {"_id": 0, "adhigaram_id": 1})
             adhigaram_list = list(adhigaram)
+            print(adhigaram_list)
+            adhigaramNumber = adhigaram_list[0]['adhigaram_id']
+             #Calculate the correct Kural ID
+            kural_start = (adhigaramNumber - 1) * 10 + 1
+            kural_end = adhigaramNumber * 10
+            kuralNumber = random.randint(kural_start, kural_end)
 
-            query = {"kural_id": int(adhigaram_list[0]["adhigaram_id"])}
-            return jsonify({"kuralId": str(kuralNumber+1), "site": game_type}), 200
+
+            query = {"kural_id": int(kuralNumber)}
+            return jsonify({"kuralId": str(kuralNumber), "site": game_type}), 200
 
     def drag_drop_game(self):
         if request.method == "GET":
