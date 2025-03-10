@@ -16,8 +16,8 @@ class User:
         print(request.form)
 
         # creating user object
-        kuralList = [[0]*10]*50
-        adhigaramList = [0]*50
+        kuralList = [[0]*10]*133
+        adhigaramList = [0]*133
         
         user = {
             "_id": uuid.uuid4().hex,

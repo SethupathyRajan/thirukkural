@@ -39,12 +39,16 @@ class kural:
 
             if(select_adhigaram != ''):
                 adhigaram_data = db['adhigaram_data']
+                select_adhigaram = select_adhigaram.strip()
                 query = {"adhigaram": select_adhigaram}
+                print(select_adhigaram)
+
                 adhigaram = adhigaram_data.find(
                     query, {"_id": 0, "adhigaram_id": 1})
                 adhigaram_list = list(adhigaram)
-                kuralStarList = session['user']['points']['stars']['kurals_completed'][int(
-                    adhigaram_list[0]["adhigaram_id"]-1)]
+                print(adhigaram_list)
+                #kuralStarList = session['user']['points']['stars']['kurals_completed'][int(adhigaram_list[0]["adhigaram_id"]-1)]
+                adhigaramNumber = adhigaram_list[0]['adhigaram_id']
                 # for star in kuralStarList:
                 #     if star == 0:
                 #         error = '*'+select_adhigaram + \
@@ -59,7 +63,7 @@ class kural:
                 query, {"_id": 0, "adhigaram_id": 1})
             adhigaram_list = list(adhigaram)
             print(adhigaram_list)
-            adhigaramNumber = adhigaram_list[0]['adhigaram_id']
+            adhigaramNumber = adhigaram_list[0]['adhigaram_id'] 
              #Calculate the correct Kural ID
             kural_start = (adhigaramNumber - 1) * 10 + 1
             kural_end = adhigaramNumber * 10
