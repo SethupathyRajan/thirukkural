@@ -36,10 +36,12 @@ class kural:
                 return jsonify({"error": error}), 401
             
             adhigaramNumber = 0
+            if(random_kural != None):
+                adhigaramNumber = random.randint(1, 133)
 
-            if(select_adhigaram != ''):
+            elif(select_adhigaram != ''):
                 adhigaram_data = db['adhigaram_data']
-                select_adhigaram = select_adhigaram.strip()
+                #select_adhigaram = select_adhigaram.strip()
                 query = {"adhigaram": select_adhigaram}
                 print(select_adhigaram)
 
@@ -54,16 +56,15 @@ class kural:
                 #         error = '*'+select_adhigaram + \
                 #             ' அதிகாரத்திலுள்ள அணைத்து குறள்களையும் கற்ற பின் விளையாடலாம்'
                 #         return jsonify({"error": error}), 401
-            else:
-                adhigaramNumber = random.randint(0, 132)
+            
 
-            adhigaram_data = db['adhigaram_data']
+            """adhigaram_data = db['adhigaram_data']
             query = {"adhigaram": select_adhigaram}
             adhigaram = adhigaram_data.find(
                 query, {"_id": 0, "adhigaram_id": 1})
             adhigaram_list = list(adhigaram)
             print(adhigaram_list)
-            adhigaramNumber = adhigaram_list[0]['adhigaram_id'] 
+            adhigaramNumber = adhigaram_list[0]['adhigaram_id'] """
              #Calculate the correct Kural ID
             kural_start = (adhigaramNumber - 1) * 10 + 1
             kural_end = adhigaramNumber * 10
@@ -148,12 +149,25 @@ class kural:
             kuralData = kural_data.find_one(query)
             kuralWordsList = kuralData['kural'][0][0].split(
             ) + kuralData['kural'][1][0].split()
-
             missingWordIndex = random.randint(0, 6)
             missingWord = kuralWordsList[missingWordIndex]
             kuralWordsList[missingWordIndex] = "__________"
-            options = ["நீடுவாழ்", "யாண்டும்", "தாள்சேர்ந்தார்க்"]
-            options.append(missingWord)
+
+            #adding more options
+            options = ["நீடுவாழ்", "யாண்டும்", "தாள்சேர்ந்தார்க்", "இனிய", "பயன்என்று",
+    "உளரென்று", "அன்போடு", "மணியினும்", "செல்வத்துள்", "சான்றோர்",
+    "மிகுத்து", "பெருக்கல்", "கேடில்லை", "இல்லாள்தன்", "நாடொறும்",
+    "மறந்தும்", "காதன்மை", "வாய்மை", "பொருட்டால்", "கேள்வி",
+    "மாண்ட", "படிபொறை", "தம்மைப்", "உளராக", "இடும்பை",
+    "சால்பின்", "துறந்தார்", "கொடியன", "நாணுடைமை", "விரும்பி",
+    "குழவி", "அம்மா", "நுகர்வார்", "அறத்தான்", "மாண்பு",
+    "தொடர்ந்து", "விளக்கம்", "முன்னேறல்", "நிலைமை", "ஒழுக்கம்",
+    "பிறப்பொடு", "துன்பம்", "தோன்றும்", "உணர்ச்சி", "உயர்ச்சி",
+    "அடக்கம்", "செல்வம்", "பெருமை", "நன்றி"]
+            random.shuffle(options)
+            options = options[:3]
+            if missingWord not in options:
+                options.append(missingWord)
             random.shuffle(options)
             return render_template('fillups_game.html', kuralWord=kuralWordsList, porul=kuralData['porul'], kuralId=kuralId, options=options, index=missingWordIndex)
 
