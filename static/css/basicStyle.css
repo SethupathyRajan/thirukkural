@@ -20,7 +20,7 @@ footer {
     font-weight: bold;
     font-family: sans-serif;
     color: #470a00;
-    position: fixed;
+   z-index:0;
     bottom: 10px;
     left: 10px;
     right: 10px;
