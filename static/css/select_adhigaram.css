@@ -25,6 +25,14 @@
 	margin-right: 15px;
 	font-size: 13px;
 	padding: 3px;
+	color: black;                 /* Add this */
+	background-color: white;     /* Add this */
+	border: 1px solid black;     /* Optional: clearer borders */
+}
+
+.filer-container select option {
+	color: black;                 /* Ensure option text is visible */
+	background-color: white;     /* Ensure dropdown is visible */
 }
 
 .filter-submit-btn {
