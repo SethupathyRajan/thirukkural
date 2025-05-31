@@ -9,7 +9,7 @@ html, body {
 
 body {
     font-family: 'Meera Inimai', sans-serif;
-    background: url("../images/bgimage.jpg");
+    background: url("/static/images/bgimage.jpg");
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
